@@ -30,16 +30,16 @@ int main() {
 
     // Input handling for the damage at each location
     int damageVal;
-    while (std::cin >> damageVal) { damageAmmounts.push_back(damageVal); }
-
-    // Data validation for damage at each location (must contain n ints)
-    if (damageAmmounts.size() != n) {
-    std::cerr << "Expected " << n
-              << " values, but received " << damageAmmounts.size() << '\n';
-    return 1;
+    for (int i = 0; i < n; ++i) {
+        if (!(std::cin >> damageVal)) { 
+            std::cerr << "Expected " << n
+            << " values, but received " << damageAmmounts.size() << '\n';
+            return 1;
+        }
+        damageAmmounts.push_back(damageVal);
     }
 
-    std::cout << "1";
+    std::cout << "1" << "\n";
 
     return 0;
 }
