@@ -5,6 +5,7 @@
 #include <cstdio>
 #include <algorithm>
 #include <numeric>
+#include <climits>
 
 // Creates a new array from the sites where the cost per site is decremented by p
 std::vector<int> makeSavingsArray(std::vector<int> sites, int p, int n) {

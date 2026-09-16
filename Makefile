@@ -1,6 +1,6 @@
 build: bin/main
 
-bin/main: src/main.cpp
+bin/main: main.cpp
 	@mkdir -p bin
 	g++ -Wall -O2 $< -o $@
 
