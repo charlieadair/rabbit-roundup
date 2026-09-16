@@ -4,6 +4,49 @@
 #include <iostream>
 #include <cstdio>
 #include <algorithm>
+#include <numeric>
+
+// Creates a new array from the sites where the cost per site is decremented by p
+std::vector<int> makeSavingsArray(std::vector<int> sites, int p, int n) {
+    std::vector<int> savings;
+    for (int i = 0; i < n; i++) {
+        savings.push_back(sites[i] - p);
+    }
+    return savings;
+}
+
+int maxSavings(const std::vector<int>& savings, int lo, int hi) {
+
+    int range = hi - lo + 1;
+    if (range == 1) {
+        return savings[lo] < 0 ? 0 : savings[lo];
+    }
+
+    int mid = lo + (hi - lo) / 2;
+
+    // Recurse left and right sides
+    int left = maxSavings(savings, lo, mid);
+    int right = maxSavings(savings, mid + 1, hi);
+
+    // Evaluate the seam
+    int walkLeft = INT_MIN;
+    int runningSum = 0;
+    for (int i = mid; i > lo; i--) {
+        runningSum += savings[i];
+        walkLeft = (walkLeft > runningSum) ? walkLeft : runningSum;
+    }
+
+    int walkRight = INT_MIN;
+    runningSum = 0;
+    for (int i = mid + 1; i < hi; i++) {
+        runningSum += savings[i];
+        walkRight = (walkRight > runningSum) ? walkRight : runningSum;
+    }
+
+    int middleSum = walkRight + walkLeft;
+
+    return std::max({middleSum, left, right});
+}
 
 int main() {
 
@@ -39,6 +82,7 @@ int main() {
         damageAmmounts.push_back(damageVal);
     }
 
+    
     std::cout << "1" << "\n";
 
     return 0;
