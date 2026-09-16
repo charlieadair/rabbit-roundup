@@ -31,14 +31,14 @@ int maxSavings(const std::vector<int>& savings, int lo, int hi) {
     // Evaluate the seam
     int walkLeft = INT_MIN;
     int runningSum = 0;
-    for (int i = mid; i > lo; i--) {
+    for (int i = mid; i >= lo; i--) {
         runningSum += savings[i];
         walkLeft = (walkLeft > runningSum) ? walkLeft : runningSum;
     }
 
     int walkRight = INT_MIN;
     runningSum = 0;
-    for (int i = mid + 1; i < hi; i++) {
+    for (int i = mid + 1; i <= hi; i++) {
         runningSum += savings[i];
         walkRight = (walkRight > runningSum) ? walkRight : runningSum;
     }
