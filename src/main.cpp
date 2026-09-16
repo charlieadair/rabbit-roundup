@@ -15,8 +15,10 @@ std::vector<int> makeSavingsArray(std::vector<int> sites, int p, int n) {
     return savings;
 }
 
+// Recursively finds the savings subarray with the greatest sum.
 int maxSavings(const std::vector<int>& savings, int lo, int hi) {
 
+    // Base case returns 0 because the savings isn't    going to be negative.
     int range = hi - lo + 1;
     if (range == 1) {
         return savings[lo] < 0 ? 0 : savings[lo];
@@ -45,6 +47,7 @@ int maxSavings(const std::vector<int>& savings, int lo, int hi) {
 
     int middleSum = walkRight + walkLeft;
 
+    // The max is always found exclusively in the middleSum, left or right
     return std::max({middleSum, left, right});
 }
 
@@ -75,6 +78,7 @@ int main() {
     int damageVal;
     for (int i = 0; i < n; ++i) {
         if (!(std::cin >> damageVal)) { 
+            // the number of integers on line 2 must be = n
             std::cerr << "Expected " << n
             << " values, but received " << damageAmmounts.size() << '\n';
             return 1;
