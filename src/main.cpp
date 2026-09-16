@@ -82,8 +82,10 @@ int main() {
         damageAmmounts.push_back(damageVal);
     }
 
-    
-    std::cout << "1" << "\n";
+    std::vector<int> savingsPerSite = makeSavingsArray(damageAmmounts,p, n);
+
+
+    printf("%d\n", maxSavings(savingsPerSite, 0, n - 1 ) );
 
     return 0;
 }
